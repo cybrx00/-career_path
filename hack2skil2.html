@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personalized Career & Skills Advisor</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .gradient-bg {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        .progress-bar {
+            transition: width 0.5s ease-in-out;
+        }
+        .fade-in {
+            animation: fadeIn 0.5s ease-in;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body class="bg-gray-50 min-h-screen">
+    <!-- Header -->
+    <header class="gradient-bg text-white">
+        <div class="container mx-auto px-4 py-8">
+            <div class="flex flex-col md:flex-row items-center justify-between">
+                <div class="text-center md:text-left mb-6 md:mb-0">
+                    <h1 class="text-4xl md:text-5xl font-bold mb-4">CareerPath Advisor</h1>
+                    <p class="text-xl opacity-90">Your Personalized Career & Skills Development Companion</p>
+                </div>
+                <div class="w-24 h-24 bg-white rounded-full flex items-center justify-center">
+                    <i class="fas fa-graduation-cap text-purple-600 text-4xl"></i>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-4 py-12">
+        <!-- Introduction Section -->
+        <section class="mb-16 text-center">
+            <div class="max-w-3xl mx-auto">
+                <h2 class="text-3xl font-bold text-gray-800 mb-6">Discover Your Ideal Career Path</h2>
+                <p class="text-lg text-gray-600 mb-8">
+                    Take our comprehensive assessment to receive personalized career recommendations 
+                    and skill development guidance tailored to your interests and strengths.
+                </p>
+                <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/70fe96de-60d5-45d1-a06b-00c8c380a309.png" alt="Diverse professionals collaborating in modern office environment with laptops and whiteboards" class="rounded-lg shadow-lg mx-auto mb-8" />
+            </div>
+        </section>
+
+        <!-- Assessment Section -->
+        <section id="assessment" class="mb-16">
+            <div class="bg-white rounded-2xl shadow-xl p-8">
+                <h2 class="text-2xl font-bold text-gray-800 mb-6 text-center">Career Assessment Questionnaire</h2>
+                
+                <div class="mb-6">
+                    <div class="flex justify-between items-center mb-2">
+                        <span class="text-sm font-medium text-gray-600">Progress</span>
+                        <span class="text-sm font-medium text-gray-600" id="progress-text">0%</span>
+                    </div>
+                    <div class="w-full bg-gray-200 rounded-full h-2">
+                        <div id="progress-bar" class="progress-bar bg-purple-600 h-2 rounded-full" style="width: 0%"></div>
+                    </div>
+                </div>
+
+                <form id="career-form" class="space-y-6">
+                    <!-- Question 1 -->
+                    <div class="question-card fade-in">
+                        <h3 class="text-lg font-semibold text-gray-800 mb-4">1. What are your primary interests?</h3>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <label class="flex items-center p-4 border border-gray-200 rounded-lg cursor-pointer hover:border-purple-300 transition-colors">
+                                <input type="checkbox" name="interests" value="technology" class="mr-3">
+                                <span>Technology & Programming</span>
+                            </label>
+                            <label class="flex items-center p-4 border border-gray-200 rounded-lg cursor-pointer hover:border-purple-300 transition-colors">
+                                <input type="checkbox" name="interests" value="business" class="mr-3">
+                                <span>Business & Management</span>
+                            </label>
+                            <label class="flex items-center p-4 border border-gray-200 rounded-lg cursor-pointer hover:border-purple-300 transition-colors">
+                                <input type="checkbox" name="interests" value="creative" class="mr-3">
+                                <span>Creative Arts & Design</span>
+                            </label>
+                            <label class="flex items-center p-4 border border-gray-200 rounded-lg cursor-pointer hover:border-purple-300 transition-colors">
+                                <input type="checkbox" name="interests" value="science" class="mr-3">
+                                <span>Science & Research</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Question 2 -->
+                    <div class="question-card fade-in" style="display: none;">
+                        <h3 class="text-lg font-semibold text-gray-800 mb-4">2. What are your strongest skills?</h3>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <label class="flex items-center p-4 border border-gray-200 rounded-lg cursor-pointer hover:border-purple-300 transition-colors">
+                                <input type="checkbox" name="skills" value="analytical" class="mr-3">
+                                <span>Analytical Thinking</span>
+                            </label>
+                            <label class="flex items-center p-4 border border-gray-200 rounded-lg cursor-pointer hover:border-purple-300 transition-colors">
+                                <input type="checkbox" name="skills" value="creative" class="mr-3">
+                                <span>Creativity & Innovation</span>
+                            </label>
+                            <label class="flex items-center p-4 border border-gray-200 rounded-lg cursor-pointer hover:border-purple-300 transition-colors">
+                                <input type="checkbox" name="skills" value="communication" class="mr-3">
+                                <span>Communication</span>
+                            </label>
+                            <label class="flex items-center p-4 border border-gray-200 rounded-lg cursor-pointer hover:border-purple-300 transition-colors">
+                                <input type="checkbox" name="skills" value="leadership" class="mr-3">
+                                <span>Leadership</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Question 3 -->
+                    <div class="question-card fade-in" style="display: none;">
+                        <h3 class="text-lg font-semibold text-gray-800 mb-4">3. Preferred work environment?</h3>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <label class="flex items-center p-4 border border-gray-200 rounded-lg cursor-pointer hover:border-purple-300 transition-colors">
+                                <input type="radio" name="environment" value="office" class="mr-3">
+                                <span>Office/Corporate</span>
+                            </label>
+                            <label class="flex items-center p-4 border border-gray-200 rounded-lg cursor-pointer hover:border-purple-300 transition-colors">
+                                <input type="radio" name="environment" value="remote" class="mr-3">
+                                <span>Remote/Flexible</span>
+                            </label>
+                            <label class="flex items-center p-4 border border-gray-200 rounded-lg cursor-pointer hover:border-purple-300 transition-colors">
+                                <input type="radio" name="environment" value="field" class="mr-3">
+                                <span>Field Work/On-site</span>
+                            </label>
+                            <label class="flex items-center p-4 border border-gray-200 rounded-lg cursor-pointer hover:border-purple-300 transition-colors">
+                                <input type="radio" name="environment" value="lab" class="mr-3">
+                                <span>Lab/Research Facility</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Question 4 -->
+                    <div class="question-card fade-in" style="display: none;">
+                        <h3 class="text-lg font-semibold text-gray-800 mb-4">4. Education level?</h3>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <label class="flex items-center p-4 border border-gray-200 rounded-lg cursor-pointer hover:border-purple-300 transition-colors">
+                                <input type="radio" name="education" value="highschool" class="mr-3">
+                                <span>High School</span>
+                            </label>
+                            <label class="flex items-center p-4 border border-gray-200 rounded-lg cursor-pointer hover:border-purple-300 transition-colors">
+                                <input type="radio" name="education" value="bachelors" class="mr-3">
+                                <span>Bachelor's Degree</span>
+                            </label>
+                            <label class="flex items-center p-4 border border-gray-200 rounded-lg cursor-pointer hover:border-purple-300 transition-colors">
+                                <input type="radio" name="education" value="masters" class="mr-3">
+                                <span>Master's Degree</span>
+                            </label>
+                            <label class="flex items-center p-4 border border-gray-200 rounded-lg cursor-pointer hover:border-purple-300 transition-colors">
+                                <input type="radio" name="education" value="phd" class="mr-3">
+                                <span>PhD/Doctorate</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Question 5 -->
+                    <div class="question-card fade-in" style="display: none;">
+                        <h3 class="text-lg font-semibold text-gray-800 mb-4">5. Career goals?</h3>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <label class="flex items-center p-4 border border-gray-200 rounded-lg cursor-pointer hover:border-purple-300 transition-colors">
+                                <input type="checkbox" name="goals" value="growth" class="mr-3">
+                                <span>Rapid Career Growth</span>
+                            </label>
+                            <label class="flex items-center p-4 border border-gray-200 rounded-lg cursor-pointer hover:border-purple-300 transition-colors">
+                                <input type="checkbox" name="goals" value="stability" class="mr-3">
+                                <span>Job Stability</span>
+                            </label>
+                            <label class="flex items-center p-4 border border-gray-200 rounded-lg cursor-pointer hover:border-purple-300 transition-colors">
+                                <input type="checkbox" name="goals" value="impact" class="mr-3">
+                                <span>Social Impact</span>
+                            </label>
+                            <label class="flex items-center p-4 border border-gray-200 rounded-lg cursor-pointer hover:border-purple-300 transition-colors">
+                                <input type="checkbox" name="goals" value="entrepreneur" class="mr-3">
+                                <span>Entrepreneurship</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Navigation Buttons -->
+                    <div class="flex justify-between pt-6">
+                        <button type="button" id="prev-btn" class="px-6 py-3 bg-gray-300 text-gray-700 rounded-lg font-medium hover:bg-gray-400 transition-colors" style="display: none;">
+                            <i class="fas fa-arrow-left mr-2"></i>Previous
+                        </button>
+                        <button type="button" id="next-btn" class="px-6 py-3 bg-purple-600 text-white rounded-lg font-medium hover:bg-purple-700 transition-colors">
+                            Next<i class="fas fa-arrow-right ml-2"></i>
+                        </button>
+                        <button type="submit" id="submit-btn" class="px-6 py-3 bg-green-600 text-white rounded-lg font-medium hover:bg-green-700 transition-colors" style="display: none;">
+                            Get Recommendations<i class="fas fa-check ml-2"></i>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </section>
+
+        <!-- Results Section -->
+        <section id="results" class="mb-16" style="display: none;">
+            <div class="bg-white rounded-2xl shadow-xl p-8">
+                <h2 class="text-2xl font-bold text-gray-800 mb-6 text-center">Your Personalized Career Recommendations</h2>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8" id="career-cards">
+                    <!-- Career cards will be populated here -->
+                </div>
+
+                <div class="bg-gray-50 rounded-xl p-6 mb-8">
+                    <h3 class="text-xl font-semibold text-gray-800 mb-4">Recommended Skills Development</h3>
+                    <div class="space-y-4" id="skills-list">
+                        <!-- Skills will be populated here -->
+                    </div>
+                </div>
+
+                <div class="text-center">
+                    <button id="restart-btn" class="px-6 py-3 bg-purple-600 text-white rounded-lg font-medium hover:bg-purple-700 transition-colors">
+                        <i class="fas fa-redo mr-2"></i>Take Assessment Again
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Features Section -->
+        <section class="mb-16">
+            <h2 class="text-3xl font-bold text-gray-800 mb-12 text-center">Why Choose CareerPath Advisor?</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-white rounded-xl p-6 shadow-lg card-hover text-center">
+                    <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-brain text-blue-600 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-800 mb-3">AI-Powered Analysis</h3>
+                    <p class="text-gray-600">Advanced algorithms analyze your responses to provide accurate career recommendations.</p>
+                </div>
+                <div class="bg-white rounded-xl p-6 shadow-lg card-hover text-center">
+                    <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-road text-green-600 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-800 mb-3">Personalized Roadmap</h3>
+                    <p class="text-gray-600">Get customized skill development plans and career progression guidance.</p>
+                </div>
+                <div class="bg-white rounded-xl p-6 shadow-lg card-hover text-center">
+                    <div class="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-chart-line text-purple-600 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-800 mb-3">Market Insights</h3>
+                    <p class="text-gray-600">Stay updated with current job market trends and in-demand skills.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-12">
+        <div class="container mx-auto px-4">
+            <div class="text-center">
+                <h3 class="text-2xl font-bold mb-4">Start Your Career Journey Today</h3>
+                <p class="text-gray-300 mb-6">Take the first step toward finding your ideal career path with our comprehensive assessment tool.</p>
+                <button onclick="scrollToAssessment()" class="px-8 py-3 bg-purple-600 text-white rounded-lg font-medium hover:bg-purple-700 transition-colors">
+                    Begin Assessment
+                </button>
+            </div>
+            <div class="mt-12 pt-8 border-t border-gray-700 text-center">
+                <p class="text-gray-400">© 2024 CareerPath Advisor. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Career assessment logic
+        let currentQuestion = 1;
+        const totalQuestions = 5;
+        const careerData = {
+            'technology': {
+                careers: [
+                    {
+                        title: 'Software Developer',
+                        description: 'Design, develop, and maintain software applications and systems.',
+                        skills: ['JavaScript', 'Python', 'React', 'Node.js'],
+                        demand: 'High',
+                        salary: '$80,000 - $130,000'
+                    },
+                    {
+                        title: 'Data Scientist',
+                        description: 'Analyze complex data to extract insights and build predictive models.',
+                        skills: ['Python', 'R', 'SQL', 'Machine Learning'],
+                        demand: 'Very High',
+                        salary: '$90,000 - $150,000'
+                    }
+                ]
+            },
+            'business': {
+                careers: [
+                    {
+                        title: 'Business Analyst',
+                        description: 'Bridge between business needs and technology solutions.',
+                        skills: ['SQL', 'Excel', 'Requirements Gathering', 'Process Modeling'],
+                        demand: 'High',
+                        salary: '$65,000 - $100,000'
+                    },
+                    {
+                        title: 'Project Manager',
+                        description: 'Lead projects to successful completion within constraints.',
+                        skills: ['PMP', 'Agile', 'Risk Management', 'Leadership'],
+                        demand: 'High',
+                        salary: '$75,000 - $120,000'
+                    }
+                ]
+            },
+            'creative': {
+                careers: [
+                    {
+                        title: 'UX/UI Designer',
+                        description: 'Create intuitive and visually appealing user interfaces.',
+                        skills: ['Figma', 'Adobe XD', 'User Research', 'Prototyping'],
+                        demand: 'High',
+                        salary: '$70,000 - $110,000'
+                    },
+                    {
+                        title: 'Content Strategist',
+                        description: 'Develop content plans that engage audiences and achieve business goals.',
+                        skills: ['SEO', 'Content Marketing', 'Analytics', 'Storytelling'],
+                        demand: 'Medium',
+                        salary: '$60,000 - $95,000'
+                    }
+                ]
+            },
+            'science': {
+                careers: [
+                    {
+                        title: 'Research Scientist',
+                        description: 'Conduct experiments and research to advance scientific knowledge.',
+                        skills: ['Lab Techniques', 'Data Analysis', 'Scientific Writing', 'Research Methodology'],
+                        demand: 'Medium',
+                        salary: '$70,000 - $115,000'
+                    },
+                    {
+                        title: 'Biomedical Engineer',
+                        description: 'Develop medical devices and equipment to improve healthcare.',
+                        skills: ['CAD', 'Biomechanics', 'Medical Device Regulations', 'Problem Solving'],
+                        demand: 'High',
+                        salary: '$75,000 - $125,000'
+                    }
+                ]
+            }
+        };
+
+        function updateProgress() {
+            const progress = ((currentQuestion - 1) / totalQuestions) * 100;
+            document.getElementById('progress-bar').style.width = progress + '%';
+            document.getElementById('progress-text').textContent = Math.round(progress) + '%';
+        }
+
+        function showQuestion(questionNum) {
+            document.querySelectorAll('.question-card').forEach((card, index) => {
+                card.style.display = index === questionNum - 1 ? 'block' : 'none';
+            });
+
+            document.getElementById('prev-btn').style.display = questionNum > 1 ? 'block' : 'none';
+            document.getElementById('next-btn').style.display = questionNum < totalQuestions ? 'block' : 'none';
+            document.getElementById('submit-btn').style.display = questionNum === totalQuestions ? 'block' : 'none';
+
+            updateProgress();
+        }
+
+        function analyzeResults() {
+            const formData = new FormData(document.getElementById('career-form'));
+            const interests = formData.getAll('interests');
+            const skills = formData.getAll('skills');
+            
+            let recommendedCareers = [];
+            let recommendedSkills = new Set();
+
+            // Simple decision tree logic
+            interests.forEach(interest => {
+                if (careerData[interest]) {
+                    recommendedCareers = [...recommendedCareers, ...careerData[interest].careers];
+                    careerData[interest].careers.forEach(career => {
+                        career.skills.forEach(skill => recommendedSkills.add(skill));
+                    });
+                }
+            });
+
+            // Add general skills based on selected skills
+            if (skills.includes('analytical')) {
+                recommendedSkills.add('Data Analysis');
+                recommendedSkills.add('Problem Solving');
+                recommendedSkills.add('Critical Thinking');
+            }
+            if (skills.includes('creative')) {
+                recommendedSkills.add('Design Thinking');
+                recommendedSkills.add('Innovation');
+                recommendedSkills.add('Visual Communication');
+            }
+            if (skills.includes('communication')) {
+                recommendedSkills.add('Public Speaking');
+                recommendedSkills.add('Technical Writing');
+                recommendedSkills.add('Presentation Skills');
+            }
+            if (skills.includes('leadership')) {
+                recommendedSkills.add('Team Management');
+                recommendedSkills.add('Strategic Planning');
+                recommendedSkills.add('Decision Making');
+            }
+
+            return {
+                careers: recommendedCareers.slice(0, 4), // Show top 4 careers
+                skills: Array.from(recommendedSkills).slice(0, 8) // Show top 8 skills
+            };
+        }
+
+        function displayResults(results) {
+            const careersContainer = document.getElementById('career-cards');
+            const skillsContainer = document.getElementById('skills-list');
+
+            careersContainer.innerHTML = '';
+            skillsContainer.innerHTML = '';
+
+            results.careers.forEach(career => {
+                const card = document.createElement('div');
+                card.className = 'bg-white border border-gray-200 rounded-xl p-6 card-hover';
+                card.innerHTML = `
+                    <h4 class="text-lg font-semibold text-gray-800 mb-2">${career.title}</h4>
+                    <p class="text-gray-600 text-sm mb-3">${career.description}</p>
+                    <div class="mb-3">
+                        <span class="inline-block bg-purple-100 text-purple-800 text-xs px-2 py-1 rounded-full mb-1">Demand: ${career.demand}</span>
+                        <span class="inline-block bg-green-100 text-green-800 text-xs px-2 py-1 rounded-full ml-2">${career.salary}</span>
+                    </div>
+                    <div class="flex flex-wrap gap-1">
+                        ${career.skills.map(skill => `<span class="bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded">${skill}</span>`).join('')}
+                    </div>
+                `;
+                careersContainer.appendChild(card);
+            });
+
+            results.skills.forEach(skill => {
+                const skillItem = document.createElement('div');
+                skillItem.className = 'flex items-center justify-between p-3 bg-white rounded-lg border border-gray-200';
+                skillItem.innerHTML = `
+                    <span class="text-gray-800 font-medium">${skill}</span>
+                    <span class="text-green-600 text-sm">Recommended</span>
+                `;
+                skillsContainer.appendChild(skillItem);
+            });
+
+            document.getElementById('assessment').style.display = 'none';
+            document.getElementById('results').style.display = 'block';
+        }
+
+        function scrollToAssessment() {
+            document.getElementById('assessment').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Event Listeners
+        document.getElementById('next-btn').addEventListener('click', () => {
+            if (currentQuestion < totalQuestions) {
+                currentQuestion++;
+                showQuestion(currentQuestion);
+            }
+        });
+
+        document.getElementById('prev-btn').addEventListener('click', () => {
+            if (currentQuestion > 1) {
+                currentQuestion--;
+                showQuestion(currentQuestion);
+            }
+        });
+
+        document.getElementById('career-form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const results = analyzeResults();
+            displayResults(results);
+        });
+
+        document.getElementById('restart-btn').addEventListener('click', () => {
+            currentQuestion = 1;
+            document.getElementById('career-form').reset();
+            showQuestion(currentQuestion);
+            document.getElementById('results').style.display = 'none';
+            document.getElementById('assessment').style.display = 'block';
+        });
+
+        // Initialize
+        showQuestion(currentQuestion);
+    </script>
+</body>
+</html>
+
